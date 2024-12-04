@@ -10,7 +10,7 @@ sed -i 's/192.168.113.8/192.168.1.1/g' package/base-files/files/bin/config_gener
 # sed -i 's|/bin/login|/bin/login -f root|g' feeds/packages/utils/ttyd/files/ttyd.config
 
 # 移除要替换的包
-rm -rf feeds/luci/themes/luci-theme-argon
+# rm -rf feeds/luci/themes/luci-theme-argon
 
 # Git稀疏克隆，只克隆指定目录到本地
 function git_sparse_clone() {
