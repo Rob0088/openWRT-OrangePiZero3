@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # 修改默认IP
-sed -i 's/192.168.113.8/192.168.1.1/g' package/base-files/files/bin/config_generate
+# sed -i 's/192.168.113.8/192.168.1.1/g' package/base-files/files/bin/config_generate
+# 修改默认 LAN 接口为 DHCP 获取 IP
+sed -i 's/option proto static/option proto dhcp/g' package/base-files/files/etc/config/network
 
 # 更改默认 Shell 为 zsh
 # sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
