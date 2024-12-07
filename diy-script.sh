@@ -1,15 +1,15 @@
 #!/bin/bash
 
 # 修改默认IP
-# sed -i 's/192.168.113.8/192.168.1.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/172.16.8.70/g' package/base-files/files/bin/config_generate
 # 修改 LAN 接口为 DHCP 获取 IP 地址
-awk '{
-    if (count == 1 && /='\''static'\''/) {
-        sub(/='\''static'\''/, "='\''dhcp'\''")
-    }
-    if (/='\''static'\''/) count++
-    print
-}' package/base-files/files/bin/config_generate
+# awk '{
+#     if (count == 1 && /='\''static'\''/) {
+#         sub(/='\''static'\''/, "='\''dhcp'\''")
+#     }
+#     if (/='\''static'\''/) count++
+#     print
+# }' package/base-files/files/bin/config_generate
 
 # 更改默认 Shell 为 zsh
 # sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
