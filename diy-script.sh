@@ -5,12 +5,14 @@
 
 # 修改 LAN 接口为 DHCP 获取 IP 地址
 awk '{
-    if (count == 1 && /='\''static'\''/) {
-        sub(/='\''static'\''/, "='\''dhcp'\''")
+    if (/set\s+[^[:space:]]+\.[^[:space:]]+\.proto=\'static\'/) {
+        count++
+        if (count == 2) {
+            gsub(/\bproto=\'static\'\b/, "proto=\'dhcp\'");
+        }
     }
-    if (/='\''static'\''/) count++
-    print
-}' package/base-files/files/bin/config_generate > temp && mv temp package/base-files/files/bin/config_generate
+    print;
+} ' package/base-files/files/bin/config_generate > temp && mv temp package/base-files/files/bin/config_generate
 
 
 # 更改默认 Shell 为 zsh
