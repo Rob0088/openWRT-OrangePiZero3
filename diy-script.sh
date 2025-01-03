@@ -3,16 +3,25 @@
 # 修改默认IP
 # sed -i 's/192.168.113.8/192.168.1.1/g' package/base-files/files/bin/config_generate
 
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
+
+
 # 修改 LAN 接口为 DHCP 获取 IP 地址
-# awk '{
-#     if (/set\s+[^[:space:]]+\.[^[:space:]]+\.proto=\'static\'/) {
-#         count++
-#         if (count == 2) {
-#             gsub(/\bproto=\'static\'\b/, "proto=\'dhcp\'");
-#         }
+# awk 'BEGIN { count = 0 } {
+#     if (count == 1 && /='\''static'\''/) {
+#         sub(/='\''static'\''/, "='\''dhcp'\''")
 #     }
-#     print;
-# } ' package/base-files/files/bin/config_generate > temp && mv temp package/base-files/files/bin/config_generate
+#     if (/='\''static'\''/) count++
+#     print
+# }' package/base-files/files/bin/config_generate > temp && mv temp package/base-files/files/bin/config_generate
+
+# 添加8188eu驱动
+# mkdir -p package/kernel/rtl8188eu
+# git clone -b openwrt-24.10 --depth=1 https://github.com/immortalwrt/immortalwrt
+# cp -r immortalwrt/package/kernel/rtl8188eu/* package/kernel/rtl8188eu
+# rm -rf immortalwrt
+
 
 
 # 更改默认 Shell 为 zsh
