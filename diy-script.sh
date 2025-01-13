@@ -3,8 +3,8 @@
 # 修改默认IP
 # sed -i 's/192.168.113.8/192.168.1.1/g' package/base-files/files/bin/config_generate
 
-rm -rf feeds/packages/lang/golang
-git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
+# rm -rf feeds/packages/lang/golang
+# git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
 
 # 修改 LAN 接口为 DHCP 获取 IP 地址
@@ -47,6 +47,7 @@ function git_sparse_clone() {
 # git clone --depth=1 -b main https://github.com/fw876/helloworld package/luci-app-ssr-plus
 #git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall-packages package/openwrt-passwall
 git clone --depth=1 https://github.com/xiaorouji/openwrt-passwall2 package/luci-app-passwall2
+git clone https://github.com/snowie2000/geoview.git package/geoview
 # git_sparse_clone master https://github.com/vernesong/OpenClash luci-app-openclash
 
 # Themes
